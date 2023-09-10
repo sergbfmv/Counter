@@ -1,0 +1,16 @@
+.counter {
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  padding: 20px;
+  width: 550px;
+  margin-top: 10%;
+}
+
+.button-area {
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}

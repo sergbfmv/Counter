@@ -1,0 +1,10 @@
+.display {
+  background-color: #61dafb;
+  border-radius: 5px;
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.display-red {
+  color: red;
+}
