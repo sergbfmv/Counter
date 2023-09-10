@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../Counter.css'
 import {Button} from "../../Button/Button";
 import {SetDisplay} from './SetDisplay/SetDisplay';
@@ -9,29 +9,33 @@ export type SetCounterPropsType = {
     minCounter: number
     addMaxCounter: (value: number) => void
     addMinCounter: (value: number) => void
+    setCount: (value: number) => void
 }
 export const SetCounter = (props: SetCounterPropsType) => {
-    const [maxValueCount, setMaxValueCount] = useState(0)
-    const [minValueCount, setMinValueCount] = useState(0)
+    // const [maxValueCount, setMaxValueCount] = useState(props.maxCounter)
+    // const [minValueCount, setMinValueCount] = useState(props.minCounter)
 
     const onClickHandler = () => {
-        props.addMaxCounter(maxValueCount)
-        props.addMinCounter(minValueCount)
+        props.addMaxCounter(props.maxCounter)
+        props.addMinCounter(props.minCounter)
+        props.setCount(props.maxCounter)
     }
 
-    const invalidValue = minValueCount >= maxValueCount || minValueCount < 0
+    const invalidValue = props.minCounter >= props.maxCounter || props.minCounter < 0
     return (
         <>
             <SetDisplay
-                maxValueCount={maxValueCount}
-                setMaxValueCount={setMaxValueCount}
-                minValueCount={minValueCount}
-                setMinValueCount={setMinValueCount}
+                // maxValueCount={maxValueCount}
+                addMaxCounter={props.addMaxCounter}
+                // minValueCount={minValueCount}
+                addMinCounter={props.addMinCounter}
                 invalidValue={invalidValue}
+                maxCounter={props.maxCounter}
+                minCounter={props.minCounter}
             />
             <div className='button-area'>
                 <NavLink to={'/'}>
-                    <Button disabled={invalidValue} name={'set'} callback={onClickHandler} />
+                    <Button disabled={invalidValue} name={'set'} callback={onClickHandler}/>
                 </NavLink>
             </div>
         </>

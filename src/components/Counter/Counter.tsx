@@ -34,6 +34,7 @@ export const Counter = (props: CountPropsType) => {
                         minCounter={props.minCounter}
                         addMaxCounter={props.addMaxCounter}
                         addMinCounter={props.addMinCounter}
+                        setCount={props.resetCount}
                     />
                 }>
                 </Route>
