@@ -2,10 +2,6 @@ import React from 'react';
 import './SetDisplay.css'
 
 type SetDisplayPropsType = {
-    // maxValueCount: number
-    // setMaxValueCount: (e: number) => void
-    // minValueCount: number
-    // setMinValueCount: (e: number) => void
     invalidValue: boolean
     addMaxCounter: (value: number) => void
     addMinCounter: (value: number) => void

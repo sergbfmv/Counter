@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '../Counter.css'
 import {Button} from "../../Button/Button";
 import {SetDisplay} from './SetDisplay/SetDisplay';
@@ -12,22 +12,20 @@ export type SetCounterPropsType = {
     setCount: (value: number) => void
 }
 export const SetCounter = (props: SetCounterPropsType) => {
-    // const [maxValueCount, setMaxValueCount] = useState(props.maxCounter)
-    // const [minValueCount, setMinValueCount] = useState(props.minCounter)
 
     const onClickHandler = () => {
         props.addMaxCounter(props.maxCounter)
         props.addMinCounter(props.minCounter)
         props.setCount(props.maxCounter)
+        localStorage.setItem('minCounterValue', JSON.stringify(props.minCounter))
+        localStorage.setItem('maxCounterValue', JSON.stringify(props.maxCounter))
     }
 
     const invalidValue = props.minCounter >= props.maxCounter || props.minCounter < 0
     return (
         <>
             <SetDisplay
-                // maxValueCount={maxValueCount}
                 addMaxCounter={props.addMaxCounter}
-                // minValueCount={minValueCount}
                 addMinCounter={props.addMinCounter}
                 invalidValue={invalidValue}
                 maxCounter={props.maxCounter}
