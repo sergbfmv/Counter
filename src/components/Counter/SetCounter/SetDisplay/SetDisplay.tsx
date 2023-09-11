@@ -1,7 +1,8 @@
 import React from 'react';
 import './SetDisplay.css'
+import {Input} from "../../../Input/Input";
 
-type SetDisplayPropsType = {
+export type SetDisplayPropsType = {
     invalidValue: boolean
     addMaxCounter: (value: number) => void
     addMinCounter: (value: number) => void
@@ -13,24 +14,12 @@ export const SetDisplay = (props: SetDisplayPropsType) => {
     return (
         <div className='set-display'>
             <div className='item'>
-                <label className='label' htmlFor={'max'}>max value:</label>
-                <input
-                    className={props.invalidValue ? 'input input-red' : 'input'}
-                    value={props.maxCounter}
-                    id={'max'}
-                    type={"number"}
-                    onChange={(e) => props.addMaxCounter(e.currentTarget.valueAsNumber)}
-                />
+                <label className='label' htmlFor={'max'}>Max value:</label>
+                <Input id='max' invalidValue={props.invalidValue} counter={props.maxCounter} callback={props.addMaxCounter} />
             </div>
             <div className='item'>
-                <label className='label' htmlFor={'min'}>start value:</label>
-                <input
-                    className={props.invalidValue ? 'input input-red' : 'input'}
-                    value={props.minCounter}
-                    id={'min'}
-                    type={"number"}
-                    onChange={(e) => props.addMinCounter(e.currentTarget.valueAsNumber)}
-                />
+                <label className='label' htmlFor={'min'}>Min value:</label>
+                <Input id='min' invalidValue={props.invalidValue} counter={props.minCounter} callback={props.addMinCounter} />
             </div>
         </div>
     );
