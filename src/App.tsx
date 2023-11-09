@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter';
 import {useDispatch, useSelector} from "react-redux";
@@ -31,13 +31,34 @@ function App() {
 
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        const minValue = localStorage.getItem('minValue');
+        const maxValue = localStorage.getItem('maxValue');
+
+        if (minValue) {
+            dispatch(addMinCounterAC(Number(minValue)));
+        }
+
+        if (maxValue) {
+            dispatch(addMaxCounterAC(Number(maxValue)));
+        }
+
+        // Move the dispatch of `addCounterAC` inside the useEffect hook
+        // and use `minCounter` as the initial count value
+        if (minCounter) {
+            dispatch(resetCounterAC(minCounter));
+        }
+    }, [minCounter, dispatch]);
+
     const addCount = () => count < maxCounter && dispatch(addCounterAC(count))
 
     const addMaxCounter = (value: number) => {
         dispatch(addMaxCounterAC(value))
+        localStorage.setItem('maxValue', JSON.stringify(value))
     }
     const addMinCounter = (value: number) => {
         dispatch(addMinCounterAC(value))
+        localStorage.setItem('minValue', JSON.stringify(value))
     }
 
     const resetCount = () => dispatch(resetCounterAC(minCounter))

@@ -9,7 +9,7 @@ export const initialStateMinCounter = 0
 export const minValueCounterReducer = (state = initialStateMinCounter, action: ActionType) => {
     switch (action.type) {
         case "ADD-MIN-COUNTER":
-            return action.payload.minCount
+            return Math.trunc(action.payload.minCount)
 
         default:
             return state

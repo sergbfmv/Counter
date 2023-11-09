@@ -8,13 +8,12 @@ const initialState = 5
 export const maxValueCounterReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD-MAX-COUNTER":
-            return action.payload.maxCount
+            return Math.trunc(action.payload.maxCount) 
 
         default:
             return state
     }
 }
-
 
 export const addMaxCounterAC = (maxCount: number) => {
     return {
