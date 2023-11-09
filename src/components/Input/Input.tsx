@@ -14,7 +14,12 @@ export const Input = (props: InputPropsType) => {
                 value={props.counter}
                 id={props.id}
                 type={"number"}
-                onChange={(e) => props.callback(e.currentTarget.valueAsNumber)}
+                onChange={(e) => {
+                    const value = e.currentTarget.valueAsNumber;
+                    if (!isNaN(value)) {
+                        props.callback(value);
+                    }
+                }}
             />
         </>
     );
